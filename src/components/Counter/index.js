@@ -13,10 +13,8 @@ const Counter = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  const { value } = state;
-  return {
-    value,
-  };
+  const { counterState } = state;
+  return counterState;
 };
 
 const mapDispatchToProps = (dispatch) => {

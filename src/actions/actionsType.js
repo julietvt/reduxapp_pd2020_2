@@ -5,6 +5,10 @@ const ACTION_TYPES = {
   */
   COUNTER_INCREMENT: Symbol(),
   COUNTER_DECREMENT: Symbol(),
+
+  GET_USERS_REQUEST: Symbol(),
+  GET_USERS_SUCCESS: Symbol(),
+  GET_USERS_ERROR: Symbol(),
 };
 
 export default ACTION_TYPES;
