@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import ACTION_TYPES from '../../actions/actionsType.js';
 
 const Counter = (props) => {
   return (
@@ -20,8 +21,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    increment: () => dispatch({ type: 'INCREMENT' }),
-    decrement: () => dispatch({ type: 'DECREMENT' }),
+    increment: () => dispatch({ type: ACTION_TYPES.COUNTER_INCREMENT }),
+    decrement: () => dispatch({ type: ACTION_TYPES.COUNTER_DECREMENT }),
   };
 };
 
