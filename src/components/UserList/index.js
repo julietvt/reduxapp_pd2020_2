@@ -1,38 +1,48 @@
-import { render } from '@testing-library/react';
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { connect } from 'react-redux';
 import ACTION_TYPES from '../../actions/actionsType.js';
 
-class UserList extends Component {
-  loadUsers = () => {
-    this.props.getUsersRequest();
-    fetch('../../dbUser.json')
+const UserList = (props) => {
+  const {
+    isFetching,
+    users,
+    error,
+    getUsersRequest,
+    getUsersSuccess,
+    getUsersError,
+  } = props;
+
+  const loadUsers = () => {
+    getUsersRequest();
+    /*
+    fetch('./dbUser.json')
       .then((response) => response.json())
-      .then((data) => this.props.getUsersSuccess(data))
-      .catch((e) => this.props.getUsersError(e));
+      .then((data) => getUsersSuccess(data))
+      .catch((e) => getUsersError(e));
+*/
   };
 
-  componentDidMount() {
-    this.loadUsers();
+  useEffect(() => {
+    loadUsers();
+  }, []);
+
+  if (error) {
+    return <div>Error!!!</div>;
+  }
+  if (isFetching) {
+    return <div>LOAD...</div>;
   }
 
-  render() {
-    if (this.props.error) {
-      return <div>Error!!!</div>;
-    }
-    if (this.props.isFetching) {
-      return <div>LOAD...</div>;
-    }
-
-    return (
+  return (
+    <>
       <ul>
-        {this.props.users.map((u) => (
+        {users.map((u) => (
           <li key={u.id}>{`${u.fName} ${u.lName}`}</li>
         ))}
       </ul>
-    );
-  }
-}
+    </>
+  );
+};
 
 const mapStateToProps = (state) => {
   const { usersState } = state;

@@ -10,12 +10,14 @@ export default function usersReducer(state = initialState, action) {
       return {
         ...state,
         isFetching: true,
+        error: null,
       };
     case ACTION_TYPES.GET_USERS_SUCCESS:
       return {
         ...state,
         isFetching: false,
         users: action.users,
+        error: null,
       };
     case ACTION_TYPES.GET_USERS_ERROR:
       return {
